@@ -1,12 +1,9 @@
 class Movie < ApplicationRecord
+  searchkick
   belongs_to :director
   include PgSearch::Model
 
-  # pg_search_scope :title_and_syllabus,
-  #   against: [:title, :syllabus],
-  #   using: {
-  #     tsearch: {prefix: true}
-  #   }
+  multisearchable against: [:title, :syllabus]
 
   pg_search_scope :movie_and_director,
     against: [:title, :syllabus],
